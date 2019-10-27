@@ -1,0 +1,29 @@
+.container
+  %h2 Edit User #{@user.name.to_s.humanize}
+  = form_for @user do |f|
+    .row
+      .col-2-sm
+        - if @user.image.attached?
+          = image_tag @user.image, size: '300x400', class: 'img-responsive'
+      .col-10-sm
+        .well
+          %form.form-horizontal
+            .form-group.field
+              = f.label :email
+              = f.email_field :email, disabled: true
+            .form-group.field
+              = f.label :name
+              = f.text_field :name, disabled: true
+            .form-group.field
+              = f.label :address_line_1
+              = f.text_field :address_line_1, disabled: @user.is_admin?
+            .form-group.field
+              = f.label :address_line_2
+              = f.text_field :address_line_2, disabled: @user.is_admin?
+            .form-group.field
+              = f.label :city
+              = f.text_field :city, disabled: @user.is_admin?
+            .form-group.field
+              = f.label :mobile_number
+              = f.text_field :mobile_number
+            = f.submit 'Update', class: 'btn btn-success'

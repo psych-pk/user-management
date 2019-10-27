@@ -1,0 +1,15 @@
+%boday
+  .container
+    %table.table.table-hover
+      %thead
+        %tr
+          %th User Id
+          %th Name
+          %th Profile
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.id
+            %td= user.name
+            %td
+              = link_to 'Edit Profile', edit_user_path(user.id)
